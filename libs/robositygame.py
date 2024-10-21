@@ -216,9 +216,8 @@ def finalize(graph, model):
 
 def init_game(start_pos, start_rot, blocks=[]):
     graph = Graph()
-    if len(blocks) > 0:
-        for block in blocks:
-            graph.put_obstacle(block)
-    can_be_completed = cc.completion_test(graph.GraphDict, 1)
+    for block in blocks:
+        graph.put_obstacle(block)
+    cycles = cc.completion_test(graph.GraphDict, start_pos)
     model = Rover(start_pos, start_rot, graph)
-    return graph, model, can_be_completed
+    return graph, model, cycles

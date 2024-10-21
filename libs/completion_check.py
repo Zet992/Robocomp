@@ -42,7 +42,4 @@ def completion_test(dict_graph, start_pos):
     graph = dict_graph_to_matrix(dict_graph)
     hc = DirectedHamiltonianCycle(graph)
     cycles = hc.ham_cycle(start_pos - 1)
-    if not cycles:
-        return False
-    else:
-        return True
+    return cycles

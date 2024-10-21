@@ -1,6 +1,18 @@
-from libs import robositygame as rcg
+from random import randint
 
-graph, model, com_flag = rcg.init_game(1, 0, [[4, 5], [8, 15]])
+from libs import robositygame as rcg
+from libs.robositygame import Graph
+from updates import randomize_obstacles, randomize_car_position
+
+
+graph_dict = Graph.GraphDict
+rot_dict = Graph.RotDict
+blocks = randomize_obstacles(graph_dict, obstacles_count=randint(1, 3))
+#  Влево - 0 градусов и дальше против часовой стрелки
+position, rotation = randomize_car_position(graph_dict, rot_dict)
+print(f"Start position: {position}\nStart rotation: {rotation}\n")
+
+graph, model, com_flag = rcg.init_game(position, rotation, blocks)
 if com_flag:
     # ЗДЕСЬ НАЧИНАЮТСЯ ВАШИ КОММАНДЫ/АЛГОРИТМ
     model.mov_to_front_point()

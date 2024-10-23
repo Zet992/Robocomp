@@ -1,5 +1,6 @@
 from libs import robositygame as rcg
 from libs.robositygame import Graph
+from updates_libs import *
 
 from updates import randomize_obstacles, randomize_car_position, randomize_map
 
@@ -15,7 +16,11 @@ def main():
         180: model.mov_to_back_point,
         270: model.mov_to_right_point,
     }
-    route = list(map(lambda x: x + 1, cycles[0]))
+    ggraph = Graph(graph.GraphDict, graph.WeightDict).Graph
+    vertex_start = cycles[0][0]
+    start = ggraph[vertex_start]
+    end = ggraph[vertex_start]
+    route = perebor(graph=ggraph, start=start, end=end)
     print(f"Our route is {route}")
     if cycles:
         prev_point = route[0]

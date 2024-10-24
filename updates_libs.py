@@ -16,7 +16,7 @@ class CurrentPath:
         return self.path[-1]
     
     def check(self):
-        return self.path[-1] == self.path[0]
+        return self.path[-1] == self.end
     
     def print(self):
         print(*list(map(lambda x: x.number, self.path)), "=" , self.weight)

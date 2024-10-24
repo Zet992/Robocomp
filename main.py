@@ -2,6 +2,7 @@ from libs import robositygame as rcg
 from libs.robositygame import Graph
 
 from updates import randomize_obstacles, randomize_car_position, randomize_map
+from updates import count_length
 
 
 def main():
@@ -15,7 +16,16 @@ def main():
         180: model.mov_to_back_point,
         270: model.mov_to_right_point,
     }
-    route = list(map(lambda x: x + 1, cycles[0]))
+    length = float("inf")
+    route = None
+    for i in cycles:
+        var_route = list(map(lambda x: x + 1, i))
+        new_length = count_length(var_route)
+        print(var_route)
+        print(new_length)
+        if new_length < length:
+            length = new_length
+            route = var_route
     print(f"Our route is {route}")
     if cycles:
         prev_point = route[0]

@@ -15,6 +15,7 @@ rot_to_func = {
     180: model.mov_to_back_point,
     270: model.mov_to_right_point,
 }
+length = float("inf")
 route = list(map(lambda x: x + 1, cycles[0]))
 print(f"Our route is {route}")
 if cycles:
@@ -37,6 +38,7 @@ if cycles:
 
     prev_point = route[0]
     length = 0
+    print(cycles)
     for i in route[1:]:
         cur_point_index = graph_dict[prev_point].index(i)
         rotation = (rot_dict[prev_point][cur_point_index] - model.cur_rot) % 360

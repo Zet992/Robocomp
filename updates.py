@@ -48,3 +48,13 @@ def randomize_map() -> tuple[rcg.Graph, rcg.Rover, list[list[int]]]:
     print()
     print(f"Start position: {position}\nStart rotation: {rotation}\n")
     return graph, model, cycles
+
+
+def count_length(route: list[int]) -> int:
+    length = 0
+    prev_point = route[0]
+    for point in route[1:]:
+        index = rcg.Graph.GraphDict[prev_point].index(point)
+        length += rcg.Graph.WeightDict[prev_point][index]
+        prev_point = point
+    return length

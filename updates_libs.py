@@ -75,8 +75,8 @@ def perebor(graph, start, end):
         all_paths = temp_all_paths.copy()
 
     # Выбираем наименее длинный путь
-    shortest_answer = answer[0]
-    for path in answer[1:]:
+    shortest_answer = answer_paths[0]
+    for path in answer_paths[1:]:
         if path.weight < shortest_answer.weight:
             shortest_answer = path
 
